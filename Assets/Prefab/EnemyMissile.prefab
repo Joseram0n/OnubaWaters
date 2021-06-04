@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760838bbd3eb6394eb89615170efac4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTileLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &3012216833577178462
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +129,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -211,6 +213,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -220,7 +223,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -6478536213147159724, guid: 818881164edc6c84abc82584809f2ce2, type: 3}
-  - {fileID: 2100000, guid: edc0def8bd383764eb794e262358b030, type: 2}
+  - {fileID: 2100000, guid: 67c3c6c3acc25f74d9f942a8f6829221, type: 2}
   - {fileID: -6922793697723135513, guid: 818881164edc6c84abc82584809f2ce2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0

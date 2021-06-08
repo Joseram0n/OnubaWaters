@@ -20,10 +20,11 @@ namespace SlimUI.ModernMenu
         Resolution[] resolutions;
         public Dropdown resolutionsDropdown;
         public Slider slider;
-        public Text text1;
-        public Text text2;
+        public TMP_Text text1;
+        public TMP_Text text2;
         public TMP_Text InputNombre;
         public TMP_Text Warning;
+        public TMP_Text ScreenText;
 
 
         public enum Theme { custom1, custom2, custom3 };
@@ -31,6 +32,9 @@ namespace SlimUI.ModernMenu
         public Theme theme;
         int themeIndex;
         public ThemeEditor themeController;
+        public int grid=10;
+        public int Quality = 0;
+        public bool fullscreen = false;
 
 
 
@@ -39,7 +43,7 @@ namespace SlimUI.ModernMenu
         {
             text1.text = "";
             text2.text = "";
-            /*resolutions=Screen.resolutions;
+           /* resolutions=Screen.resolutions;
             resolutionsDropdown.ClearOptions();
             List<string> options = new List<string>();
             int currentResolutionIndex = 0;
@@ -105,7 +109,7 @@ namespace SlimUI.ModernMenu
         }
         public void CloseSettings()
         {
-            //setVariables();
+            setVariables();
             settingsPanel.SetActive(false);
             mainPanel.SetActive(true);
         }
@@ -115,12 +119,15 @@ namespace SlimUI.ModernMenu
         public void setVariables()
         {
             float vol = slider.value;
-            Camera.main.GetComponent<AudioSource>().volume = vol;
-            //GameVariables.setVolume(vol);
-            Resolution res = resolutions[resolutionsDropdown.value];
-            Debug.Log("width: " + res.width + " height " + res.height);
-            Screen.SetResolution(res.width, res.height, true);
+            //Camera.main.GetComponent<AudioSource>().volume = vol;
+            GameVariables.setVolume(vol);
+            //Resolution res = resolutions[resolutionsDropdown.value];
+            //Debug.Log("width: " + res.width + " height " + res.height);
+            //Screen.SetResolution(res.width, res.height, true);
             //GameVariables.setResolution(res);
+            GameVariables.setGrid(grid);
+            QualitySettings.SetQualityLevel(Quality);
+            Screen.fullScreen=fullscreen;
         }
 
         public void verPuntuaciones()
@@ -129,7 +136,7 @@ namespace SlimUI.ModernMenu
             text2.text = "";
             mainPanel.SetActive(false);
             scorePanel.SetActive(true);
-            /*List<PlayerScore> players=SaveSystem.LoadPlayers();
+            List<PlayerScore> players=SaveSystem.LoadPlayers();
             players.Sort();
             while(players.Count>10)
             {
@@ -138,9 +145,8 @@ namespace SlimUI.ModernMenu
             foreach(PlayerScore p in players)
             {
                 text1.text = text1.text + p.name + "\n";
-                text2.text = text2.text + p.getMonedas() + "\n";
-                text3.text = text3.text + p.getKills()+ "\n";
-            }*/
+                text2.text = text2.text + p.getScore() + "\n";
+            }
         }
 
        
@@ -200,6 +206,37 @@ namespace SlimUI.ModernMenu
                 yousurePanel.SetActive(true);
         }
 
+        public void grid10()
+        {
+            grid = 10;
+        }
+        public void grid15()
+        {
+            grid = 15;
+        }
+
+        public void qualityLow()
+        {
+            Quality = 0;
+        }
+        public void qualityMid()
+        {
+            Quality = 1;
+        }
+        public void qualityHigh()
+        {
+            Quality = 2;
+        }
+        public void changeFullScreen()
+        {
+            fullscreen = !fullscreen;
+            //if ("off".Equals(ScreenText.text))
+            if(ScreenText.text=="off")
+                ScreenText.SetText("on");
+            else
+                ScreenText.SetText("off");
+        }
     }
+
 }
 

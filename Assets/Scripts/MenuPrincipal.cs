@@ -36,6 +36,7 @@ namespace SlimUI.ModernMenu
         public int Quality = 0;
         public bool fullscreen = false;
 
+        public AudioManager AuMan;
 
 
         // Start is called before the first frame update
@@ -43,6 +44,9 @@ namespace SlimUI.ModernMenu
         {
             text1.text = "";
             text2.text = "";
+            GameVariables.setVolume(slider.value);
+            AuMan.UpdateVolume();
+            AuMan.Play("seaSound");
            /* resolutions=Screen.resolutions;
             resolutionsDropdown.ClearOptions();
             List<string> options = new List<string>();
@@ -88,7 +92,16 @@ namespace SlimUI.ModernMenu
         }
         public void EmpezarJuego()
         {
-            SceneManager.LoadScene(1);
+            string nombre = InputNombre.text;
+            if (!string.IsNullOrEmpty(nombre) && nombre.Length > 1)
+            {
+                GameVariables.setName(nombre);
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                Warning.gameObject.SetActive(true);
+            }
         }
         public void SalirJuego()
         {
@@ -121,6 +134,7 @@ namespace SlimUI.ModernMenu
             float vol = slider.value;
             //Camera.main.GetComponent<AudioSource>().volume = vol;
             GameVariables.setVolume(vol);
+            AuMan.UpdateVolume();
             //Resolution res = resolutions[resolutionsDropdown.value];
             //Debug.Log("width: " + res.width + " height " + res.height);
             //Screen.SetResolution(res.width, res.height, true);
@@ -134,19 +148,21 @@ namespace SlimUI.ModernMenu
         {
             text1.text = "";
             text2.text = "";
-            mainPanel.SetActive(false);
-            scorePanel.SetActive(true);
             List<PlayerScore> players=SaveSystem.LoadPlayers();
-            players.Sort();
-            while(players.Count>10)
+            if(players!=null)
             {
-                players.RemoveAt(players.Count - 1);
+                players.Sort();
+                while (players.Count > 10)
+                {
+                    players.RemoveAt(players.Count - 1);
+                }
+                foreach (PlayerScore p in players)
+                {
+                    text1.text = text1.text + p.name + "\n";
+                    text2.text = text2.text + p.getScore() + "\n";
+                }
             }
-            foreach(PlayerScore p in players)
-            {
-                text1.text = text1.text + p.name + "\n";
-                text2.text = text2.text + p.getScore() + "\n";
-            }
+            
         }
 
        
@@ -235,6 +251,14 @@ namespace SlimUI.ModernMenu
                 ScreenText.SetText("on");
             else
                 ScreenText.SetText("off");
+        }
+        public void playButtonHover()
+        {
+            AuMan.Play("buttonHover");
+        }
+        public void playButtonPress()
+        {
+            AuMan.Play("buttonPressed");
         }
     }
 

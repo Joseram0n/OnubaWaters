@@ -66,10 +66,10 @@ public class EnemyScript : MonoBehaviour
                 }
             }
         }
-        foreach(var x in enemyShips)
+       /* foreach(var x in enemyShips)
         {
             Debug.Log("x: " + x[0]);
-        }
+        }*/
         return enemyShips;
     }
 
@@ -120,7 +120,7 @@ public class EnemyScript : MonoBehaviour
             Debug.Log(" -########-- ");
             guess = nextIndex;
         }
-        GameObject tile = GameObject.Find("Tile (" + (guess + 1) + ")");
+        GameObject tile = GameObject.Find("GridCell (" + (guess + 1) + ")");
         guessGrid[guess] = 'm';
         Vector3 vec = tile.transform.position;
         vec.y += 15;

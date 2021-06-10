@@ -43,6 +43,8 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 
+
+
 	public void UpdateVolume()
     {
 		foreach(Sound s in sounds)

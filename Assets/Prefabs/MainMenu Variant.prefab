@@ -13031,34 +13031,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 2063450495}
   m_maskType: 0
---- !u!114 &1362907028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6396305149753916815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c6999eb9ebf0574496f213d27c19fdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingsPanel: {fileID: 1837665119}
-  mainPanel: {fileID: 912636745}
-  scorePanel: {fileID: 0}
-  PLAYPanel: {fileID: 1711825481}
-  GameOptionsPanel: {fileID: 1325401334}
-  VideoOptionsPanel: {fileID: 398742412}
-  yousurePanel: {fileID: 0}
-  resolutionsDropdown: {fileID: 0}
-  slider: {fileID: 0}
-  text1: {fileID: 0}
-  text2: {fileID: 0}
-  text3: {fileID: 0}
-  InputNombre: {fileID: 0}
-  Warning: {fileID: 0}
-  theme: 0
-  themeController: {fileID: 0}
 --- !u!1 &888943768632247366
 GameObject:
   m_ObjectHideFlags: 0
@@ -13134,6 +13106,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1362907028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6396305149753916815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6999eb9ebf0574496f213d27c19fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsPanel: {fileID: 1837665119}
+  mainPanel: {fileID: 912636745}
+  scorePanel: {fileID: 0}
+  PLAYPanel: {fileID: 1711825481}
+  GameOptionsPanel: {fileID: 1325401334}
+  VideoOptionsPanel: {fileID: 398742412}
+  yousurePanel: {fileID: 0}
+  resolutionsDropdown: {fileID: 0}
+  slider: {fileID: 0}
+  text1: {fileID: 0}
+  text2: {fileID: 0}
+  InputNombre: {fileID: 0}
+  Warning: {fileID: 0}
+  ScreenText: {fileID: 0}
+  theme: 0
+  themeController: {fileID: 0}
+  grid: 10
+  Quality: 0
+  fullscreen: 0
+  AuMan: {fileID: 0}
 --- !u!1001 &122194676749577750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13985,7 +13989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6860744886046630431, guid: d7d503bba2f6540419ab460488cb4515, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6860744886205174602, guid: d7d503bba2f6540419ab460488cb4515, type: 3}
       propertyPath: m_AnchorMax.y

@@ -39,8 +39,14 @@ public class GameManager : MonoBehaviour
     
     private int enemyShipCount = 5;
     private int playerShipCount = 5;
+    private int puntuacion = 117;
 
     public AudioManager AuMan;
+    [SerializeField]
+    public bool playGenetic = false;
+
+    [SerializeField]
+    public double stopLimit;
 
 
     // Start is called before the first frame update
@@ -51,7 +57,9 @@ public class GameManager : MonoBehaviour
         nextBtn.onClick.AddListener(() => NextShipClicked());
         rotateBtn.onClick.AddListener(() => RotateClicked());
         replayBtn.onClick.AddListener(() => ReplayClicked());
+        playGenetic = GameVariables.playGenetic;
         enemyShips = enemyScript.PlaceEnemyShips();
+        
     }
 
     private void NextShipClicked()
@@ -75,6 +83,9 @@ public class GameManager : MonoBehaviour
                 topText.text = "Guess an enemy tile.";
                 setupComplete = true;
                 for (int i = 0; i < ships.Length; i++) ships[i].SetActive(false);
+
+                if (playGenetic)
+                    enemyScript.ExecuteGenetic(enemyScript.PositionsToArray(getPlayerShipsPosition()), 10, stopLimit);
             }
         }
         
@@ -176,15 +187,22 @@ public class GameManager : MonoBehaviour
 
     private void EndPlayerTurn()
     {
+        puntuacion--;
         for (int i = 0; i < ships.Length; i++) ships[i].SetActive(true);
         foreach (GameObject fire in playerFires) fire.SetActive(true);
         foreach (GameObject fire in enemyFires) fire.SetActive(false);
         enemyShipText.text = enemyShipCount.ToString();
         topText.text = "Enemy's turn";
-        enemyScript.NPCTurn();
+
+        if (playGenetic)
+            enemyScript.GeneticTurn();
+        else
+            enemyScript.NPCTurn();
+
         ColorAllTiles(0);
         if (playerShipCount < 1)
         {
+            puntuacion = 0;
             AuMan.Play("defeatSound");
             GameOver("ENEMY WINs!!!");
         }
@@ -216,6 +234,8 @@ public class GameManager : MonoBehaviour
 
     void GameOver(string winner)
     {
+        PlayerScore sc = new PlayerScore(puntuacion, GameVariables.Name);
+        SaveSystem.SavePlayer(sc);
         topText.text = "Game Over: " + winner;
         replayBtn.gameObject.SetActive(true);
         playerTurn = false;
@@ -226,5 +246,27 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public List<int[]> getPlayerShipsPosition()
+    {
+        Debug.Log("PlayerPos");
+        List<int[]> playerPos = new List<int[]>();
+
+        for (int i = 0; i < ships.Length; i++)
+        {
+            String spos = "";
+            foreach (var pos in ships[i].GetComponent<ShipScript>().touchTiles)
+            {
+                //"GridCell (" + ncasilla + ")";
+     
+                spos += pos.name.Split('(', ')')[1] + ",";
+                
+            }
+            // spos = 24,45,74,57,
+            spos = spos.Substring(0, spos.Length-1);
+            playerPos.Add(Array.ConvertAll(spos.Split(','), int.Parse));
+        }
+        Debug.Log("PlayerPos");
+        return playerPos;
+    }
 
 }

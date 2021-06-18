@@ -14,7 +14,7 @@ public class ShipScript : MonoBehaviour
 
     private Material[] allMaterials;
 
-    List<GameObject> touchTiles = new List<GameObject>();
+    public List<GameObject> touchTiles = new List<GameObject>();
     List<Color> allColors = new List<Color>();
 
     private void Start()

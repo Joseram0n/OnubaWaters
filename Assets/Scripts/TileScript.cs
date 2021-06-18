@@ -20,6 +20,7 @@ public class TileScript : MonoBehaviour
 
     void Update()
     {
+        /*
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit))
         {
@@ -31,6 +32,7 @@ public class TileScript : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -55,5 +57,14 @@ public class TileScript : MonoBehaviour
     public void SwitchColors(int colorIndex)
     {
         GetComponent<Renderer>().material.color = hitColor[colorIndex];
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log(gameObject.name, gameObject);
+        if (missileHit == false)
+        {
+            gameManager.TileClicked(this.gameObject);
+        }
     }
 }

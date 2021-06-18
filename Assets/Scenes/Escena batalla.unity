@@ -404,6 +404,7 @@ MonoBehaviour:
   xOffset: 0
   zOffset: 1
   shipSize: 2
+  touchTiles: []
 --- !u!1001 &50665898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2782,6 +2783,8 @@ MonoBehaviour:
   firePrefab: {fileID: 7629157345637087946, guid: 9cb9768122210d644af38d2cfb7e426e, type: 3}
   woodDock: {fileID: 1293107826}
   AuMan: {fileID: 403277506}
+  playGenetic: 0
+  stopLimit: 0.7
 --- !u!4 &330522135
 Transform:
   m_ObjectHideFlags: 0
@@ -3314,6 +3317,7 @@ MonoBehaviour:
   xOffset: 0
   zOffset: 0
   shipSize: 5
+  touchTiles: []
 --- !u!54 &454614163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5085,7 +5089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -5689,6 +5693,7 @@ MonoBehaviour:
   xOffset: 0
   zOffset: -1
   shipSize: 3
+  touchTiles: []
 --- !u!1001 &852204128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10325,6 +10330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMissilePrefab: {fileID: 6074144841674271027, guid: 21fd8112750dc864f8749b6c4d0dd70b, type: 3}
   gameManager: {fileID: 330522134}
+  ag: {fileID: 0}
+  agGrids: 
 --- !u!4 &1517838160
 Transform:
   m_ObjectHideFlags: 0
@@ -10388,6 +10395,7 @@ MonoBehaviour:
   xOffset: 0
   zOffset: 1.25
   shipSize: 4
+  touchTiles: []
 --- !u!1001 &1557787921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11065,6 +11073,7 @@ MonoBehaviour:
   xOffset: 0
   zOffset: -0.2
   shipSize: 3
+  touchTiles: []
 --- !u!1001 &1697453195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15073,7 +15082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2474875791444078472, guid: fdb2eae52bdb92a43b29d36310a06c43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 2474875791444078472, guid: fdb2eae52bdb92a43b29d36310a06c43, type: 3}
       propertyPath: m_LocalPosition.y

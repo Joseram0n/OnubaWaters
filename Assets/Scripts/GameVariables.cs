@@ -4,11 +4,13 @@ using UnityEngine;
 
 public static class GameVariables
 {
-    static float Volume=0.2f;
-    static Resolution resolution;
-    static string name;
-    static int gridsize;
+    public static float Volume { get; set; } = 0.2f;
+    public static Resolution Resolution { get; set; }
+    public static string Name { get; set; }
+    public static int Gridsize { get; set; }
+    public static bool playGenetic { get; set; }
     
+    /*
     public static void setVolume(float vol)
     {
         Volume = vol;
@@ -41,4 +43,5 @@ public static class GameVariables
     {
         return gridsize;
     }
+    */
 }

@@ -11,6 +11,8 @@ public class EnemyScript : MonoBehaviour
     private int guess;
     public GameObject enemyMissilePrefab;
     public GameManager gameManager;
+    public AlgoritmoGenetico ag;
+    public int[] agGrids;
 
     private void Start()
     {
@@ -66,10 +68,11 @@ public class EnemyScript : MonoBehaviour
                 }
             }
         }
-       /* foreach(var x in enemyShips)
-        {
-            Debug.Log("x: " + x[0]);
-        }*/
+        /* foreach(var x in enemyShips)
+         {
+             Debug.Log("x: " + x[0]);
+         }*/
+
         return enemyShips;
     }
 
@@ -180,4 +183,61 @@ public class EnemyScript : MonoBehaviour
         }
         Invoke("EndTurn", 1.0f);
     }
+
+    public int[] PositionsToArray(List<int[]> enShips)
+    {
+        Debug.Log("PosToArr");
+        int[] aP = Enumerable.Range(0, 100).ToArray();
+
+        foreach(var i in enShips)
+        {
+            foreach(int x in i)
+            {
+                aP[x] = 1;
+                Debug.Log("Pos: " + x);
+            }
+        }
+        Debug.Log("PosToArr");
+        return aP;
+    }
+
+    public void ExecuteGenetic(int[] solution, int generationSize, double stopLimit)
+    {
+        //ag = this.gameObject.GetComponent<AlgoritmoGenetico>();
+        ag = new AlgoritmoGenetico();
+        agGrids = ag.solve(solution,generationSize,stopLimit);
+        Debug.Log("Tamaño Solve: " + agGrids.Length);
+
+    }
+
+    public void GeneticTurn()
+    {
+        int guess = 0;
+
+        for (int i = 0; i < agGrids.Length; i++)
+        {
+            if (agGrids[i] == 1)
+            {
+                guess = i;
+                agGrids[i] = -1;
+            }
+        }
+
+        if(guess == 0)
+        {
+            while(agGrids[guess] == -1)
+            {
+                guess = Random.Range(0, 100);
+            }
+            agGrids[guess] = -1;
+        }
+
+        GameObject tile = GameObject.Find("GridCell (" + (99 - guess) + ")");
+        Vector3 vec = tile.transform.position;
+        vec.y += 15; // Altura misil
+        GameObject missile = Instantiate(enemyMissilePrefab, vec, enemyMissilePrefab.transform.rotation);
+        missile.GetComponent<EnemyMissileScript>().SetTarget(guess);
+        missile.GetComponent<EnemyMissileScript>().targetTileLocation = tile.transform.position;
+    }
+
 }

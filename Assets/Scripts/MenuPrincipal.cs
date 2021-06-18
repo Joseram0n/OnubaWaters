@@ -44,7 +44,7 @@ namespace SlimUI.ModernMenu
         {
             text1.text = "";
             text2.text = "";
-            GameVariables.setVolume(slider.value);
+            GameVariables.Volume = slider.value;
             AuMan.UpdateVolume();
             AuMan.Play("seaSound");
            /* resolutions=Screen.resolutions;
@@ -95,7 +95,8 @@ namespace SlimUI.ModernMenu
             string nombre = InputNombre.text;
             if (!string.IsNullOrEmpty(nombre) && nombre.Length > 1)
             {
-                GameVariables.setName(nombre);
+                GameVariables.Name = nombre;
+                GameVariables.playGenetic = false;
                 SceneManager.LoadScene(1);
             }
             else
@@ -103,6 +104,22 @@ namespace SlimUI.ModernMenu
                 Warning.gameObject.SetActive(true);
             }
         }
+
+        public void EmpezarJuegoGen()
+        {
+            string nombre = InputNombre.text;
+            if (!string.IsNullOrEmpty(nombre) && nombre.Length > 1)
+            {
+                GameVariables.Name = nombre;
+                GameVariables.playGenetic = true;
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                Warning.gameObject.SetActive(true);
+            }
+        }
+
         public void SalirJuego()
         {
             Debug.Log("Quitting");
@@ -133,13 +150,13 @@ namespace SlimUI.ModernMenu
         {
             float vol = slider.value;
             //Camera.main.GetComponent<AudioSource>().volume = vol;
-            GameVariables.setVolume(vol);
+            GameVariables.Volume = vol;
             AuMan.UpdateVolume();
             //Resolution res = resolutions[resolutionsDropdown.value];
             //Debug.Log("width: " + res.width + " height " + res.height);
             //Screen.SetResolution(res.width, res.height, true);
             //GameVariables.setResolution(res);
-            GameVariables.setGrid(grid);
+            GameVariables.Gridsize = grid;
             QualitySettings.SetQualityLevel(Quality);
             Screen.fullScreen=fullscreen;
         }

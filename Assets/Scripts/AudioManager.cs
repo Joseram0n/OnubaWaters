@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
     {
 		foreach(Sound s in sounds)
         {
-			s.source.volume = s.volume * GameVariables.getVolume();
+			s.source.volume = s.volume * GameVariables.Volume;
         }
     }
 

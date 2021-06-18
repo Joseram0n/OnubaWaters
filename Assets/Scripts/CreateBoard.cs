@@ -33,13 +33,17 @@ public class CreateBoard : MonoBehaviour
         }
 
         // crear grid
+
+        int ncasilla = 0;
         for(int z = 0; z < height; z++)
         {
             for( int x = 0; x < width; x++)
             {
                 gameGrid[x, z] = Instantiate(gridCellPrefab, new Vector3(x * gridSpaceSize, 0, z * gridSpaceSize), Quaternion.identity);
                 gameGrid[x, z].transform.parent = transform;
-                gameGrid[x, z].gameObject.name = "GridCell (X: " + x.ToString() + " , Z: " + z.ToString() + ")";
+                //gameGrid[x, z].gameObject.name = "GridCell (X: " + x.ToString() + " , Z: " + z.ToString() + ")";
+                gameGrid[x, z].gameObject.name = "GridCell (" + ncasilla + ")";
+                ncasilla++;
             }
         }
     }
